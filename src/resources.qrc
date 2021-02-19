@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="tray">resources/eye-dropper_sl.svg</file>
+        <file alias="app">resources/ducopi-icon-medium.svg</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file alias="default">resources/style.css</file>
+        <file alias="default-values">resources/style-values.rui</file>
+    </qresource>
+</RCC>
