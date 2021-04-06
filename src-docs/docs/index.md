@@ -12,7 +12,8 @@ With *DuCopi*, no matter what is your current application, you always keep the c
 - It keeps a color palette for you (a list of custom colors)
 - It is able to import and export this palette (in a *Gimp*/*Inkscape* format)
 
-The best way to use it is to add it to your startup applications.
+!!! hint
+    The best way to use it is to add it to your startup applications.
 
 [TOC]
 
