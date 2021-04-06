@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    a.setQuitOnLastWindowClosed(false);
+
     // settings
     QCoreApplication::setOrganizationName(STR_COMPANYNAME);
     QCoreApplication::setOrganizationDomain(STR_COMPANYDOMAIN);

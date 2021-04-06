@@ -7,14 +7,7 @@ DuColorDialog::DuColorDialog(QWidget *parent): QColorDialog(parent)
     this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint | Qt::SubWindow);
     this->setWindowIcon(QIcon(":/icons/app"));
 
-    trayTimer = new QTimer(this);
-    bool trayOk = addTrayIcon();
-    if (!trayOk)
-    {
-        //Try again for few secs as the tray may not be available on system boot
-        connect(trayTimer, &QTimer::timeout, this, &DuColorDialog::addTrayIcon);
-        trayTimer->start(1000);
-    }
+    addTrayIcon();
 
     //Restore custom colors
     QSettings settings;
@@ -49,6 +42,7 @@ void DuColorDialog::showHide()
 
 void DuColorDialog::selectColor()
 {
+    addTrayIcon();
     _current = this->currentColor();
     copyColor();
 }
@@ -63,90 +57,79 @@ void DuColorDialog::copyColor()
 
 void DuColorDialog::cancel()
 {
+    addTrayIcon();
     this->setCurrentColor(_current);
 }
 
 bool DuColorDialog::addTrayIcon()
 {
-    numTrayAttempts++;
-    if (QSystemTrayIcon::isSystemTrayAvailable())
-    {
-        //stop timer
-        trayTimer->stop();
-        trayTimer->deleteLater();
-        //tray icon
-        actionShow = new QAction(QIcon(":/icons/show"), "Show");
-        actionQuit = new QAction(QIcon(":/icons/quit"), "Quit");
-        QMenu *trayMenu = new QMenu("DuCoPi",this);
-        QSystemTrayIcon *trayIcon = new QSystemTrayIcon( QIcon(":/icons/tray"), this );
-        trayMenu->addAction(actionShow);
-        QAction *copyAction = new QAction(QIcon(":/icons/copy"), "Copy");
-        trayMenu->addAction(copyAction);
-        trayMenu->addAction(actionQuit);
-        trayMenu->addSeparator();
-        QAction *exportAction = new QAction(QIcon(":/icons/export"), "Export Palette");
-        trayMenu->addAction(exportAction);
-        QAction *importAction = new QAction(QIcon(":/icons/import"), "Import Palette");
-        trayMenu->addAction(importAction);
-        trayMenu->addSeparator();
-        bool chat = QString(URL_CHAT) != "";
-        bool bugReport = QString(URL_BUGREPORT) != "";
-        bool forum = QString(URL_FORUM) != "";
-        bool doc = QString(URL_DOC) != "";
-        if (doc)
-        {
-            QAction *docAction = new QAction(QIcon(":/icons/doc"), "Help");
-            docAction->setToolTip("Read the documentation");
-            docAction->setShortcut(QKeySequence("F1"));
-            trayMenu->addAction(docAction);
-            if (!chat && !forum && !doc) trayMenu->addSeparator();
-            connect(docAction, &QAction::triggered, this, &DuColorDialog::duqf_doc);
-        }
-        if (bugReport)
-        {
-            QAction *bugReportAction = new QAction(QIcon(":/icons/bug-report"), "Bug Report");
-            bugReportAction->setToolTip("Report a bug");
-            trayMenu->addAction(bugReportAction);
-            if (!chat && !forum) trayMenu->addSeparator();
-            connect(bugReportAction, &QAction::triggered, this, &DuColorDialog::duqf_bugReport);
-        }
-        if (chat)
-        {
-            QAction *chatAction = new QAction(QIcon(":/icons/chat"), "Chat");
-            chatAction->setToolTip("Come and have a chat");
-            trayMenu->addAction(chatAction);
-            if (!forum) trayMenu->addSeparator();
-            connect(chatAction, &QAction::triggered, this, &DuColorDialog::duqf_chat);
-        }
-        if (forum)
-        {
-            QAction *forumAction = new QAction(QIcon(":/icons/forum"), "Forum");
-            forumAction->setToolTip("Join us on our forum");
-            trayMenu->addAction(forumAction);
-            trayMenu->addSeparator();
-            connect(forumAction, &QAction::triggered, this, &DuColorDialog::duqf_forum);
-        }
-        QAction *version = new QAction(QString(STR_INTERNALNAME) + " - " + QString(STR_VERSION));
-        version->setEnabled(false);
-        trayMenu->addAction(version);
-        trayIcon->setContextMenu(trayMenu);
-        trayIcon->show();
-        connect(actionShow, &QAction::triggered, this, &DuColorDialog::show);
-        connect(copyAction, &QAction::triggered, this, &DuColorDialog::copyColor);
-        connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
-        connect(importAction, &QAction::triggered, this, &DuColorDialog::importPalette);
-        connect(exportAction, &QAction::triggered, this, &DuColorDialog::exportPalette);
-        this->hide();
-        return true;
-    }
+    if (trayOk) return true;
 
-    if (numTrayAttempts > 5)
+    trayOk = true;
+    //tray icon
+    actionShow = new QAction(QIcon(":/icons/show"), "Show");
+    actionQuit = new QAction(QIcon(":/icons/quit"), "Quit");
+    QMenu *trayMenu = new QMenu("DuCoPi",this);
+    QSystemTrayIcon *trayIcon = new QSystemTrayIcon( QIcon(":/icons/tray"), this );
+    trayMenu->addAction(actionShow);
+    QAction *copyAction = new QAction(QIcon(":/icons/copy"), "Copy");
+    trayMenu->addAction(copyAction);
+    trayMenu->addAction(actionQuit);
+    trayMenu->addSeparator();
+    QAction *exportAction = new QAction(QIcon(":/icons/export"), "Export Palette");
+    trayMenu->addAction(exportAction);
+    QAction *importAction = new QAction(QIcon(":/icons/import"), "Import Palette");
+    trayMenu->addAction(importAction);
+    trayMenu->addSeparator();
+    bool chat = QString(URL_CHAT) != "";
+    bool bugReport = QString(URL_BUGREPORT) != "";
+    bool forum = QString(URL_FORUM) != "";
+    bool doc = QString(URL_DOC) != "";
+    if (doc)
     {
-        trayTimer->stop();
-        trayTimer->deleteLater();
+        QAction *docAction = new QAction(QIcon(":/icons/doc"), "Help");
+        docAction->setToolTip("Read the documentation");
+        docAction->setShortcut(QKeySequence("F1"));
+        trayMenu->addAction(docAction);
+        if (!chat && !forum && !doc) trayMenu->addSeparator();
+        connect(docAction, &QAction::triggered, this, &DuColorDialog::duqf_doc);
     }
-
-    return false;
+    if (bugReport)
+    {
+        QAction *bugReportAction = new QAction(QIcon(":/icons/bug-report"), "Bug Report");
+        bugReportAction->setToolTip("Report a bug");
+        trayMenu->addAction(bugReportAction);
+        if (!chat && !forum) trayMenu->addSeparator();
+        connect(bugReportAction, &QAction::triggered, this, &DuColorDialog::duqf_bugReport);
+    }
+    if (chat)
+    {
+        QAction *chatAction = new QAction(QIcon(":/icons/chat"), "Chat");
+        chatAction->setToolTip("Come and have a chat");
+        trayMenu->addAction(chatAction);
+        if (!forum) trayMenu->addSeparator();
+        connect(chatAction, &QAction::triggered, this, &DuColorDialog::duqf_chat);
+    }
+    if (forum)
+    {
+        QAction *forumAction = new QAction(QIcon(":/icons/forum"), "Forum");
+        forumAction->setToolTip("Join us on our forum");
+        trayMenu->addAction(forumAction);
+        trayMenu->addSeparator();
+        connect(forumAction, &QAction::triggered, this, &DuColorDialog::duqf_forum);
+    }
+    QAction *version = new QAction(QString(STR_INTERNALNAME) + " - " + QString(STR_VERSION));
+    version->setEnabled(false);
+    trayMenu->addAction(version);
+    trayIcon->setContextMenu(trayMenu);
+    trayIcon->show();
+    connect(actionShow, &QAction::triggered, this, &DuColorDialog::show);
+    connect(copyAction, &QAction::triggered, this, &DuColorDialog::copyColor);
+    connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
+    connect(importAction, &QAction::triggered, this, &DuColorDialog::importPalette);
+    connect(exportAction, &QAction::triggered, this, &DuColorDialog::exportPalette);
+    this->hide();
+    return true;
 }
 
 void DuColorDialog::exportPalette()

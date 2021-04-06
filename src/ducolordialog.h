@@ -9,7 +9,6 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 #include <QClipboard>
-#include <QTimer>
 #include <QtDebug>
 #include <QSettings>
 #include <QDesktopServices>
@@ -39,9 +38,8 @@ private:
     QAction *actionShow;
     QAction *actionQuit;
     QClipboard *clipboard;
-    QTimer *trayTimer;
-    int numTrayAttempts = 0;
     QColor _current;
+    bool trayOk = false;
 
     void loadCSS(QString cssPath, QString styleValues = "");
     void saveCustomColors();
