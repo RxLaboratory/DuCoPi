@@ -75,18 +75,18 @@ bool DuColorDialog::addTrayIcon()
         trayTimer->stop();
         trayTimer->deleteLater();
         //tray icon
-        actionShow = new QAction("Show");
-        actionQuit = new QAction("Quit");
+        actionShow = new QAction(QIcon(":/icons/show"), "Show");
+        actionQuit = new QAction(QIcon(":/icons/quit"), "Quit");
         QMenu *trayMenu = new QMenu("DuCoPi",this);
         QSystemTrayIcon *trayIcon = new QSystemTrayIcon( QIcon(":/icons/tray"), this );
         trayMenu->addAction(actionShow);
-        QAction *copyAction = new QAction("Copy again");
+        QAction *copyAction = new QAction(QIcon(":/icons/copy"), "Copy");
         trayMenu->addAction(copyAction);
         trayMenu->addAction(actionQuit);
         trayMenu->addSeparator();
-        QAction *exportAction = new QAction("Export Palette");
+        QAction *exportAction = new QAction(QIcon(":/icons/export"), "Export Palette");
         trayMenu->addAction(exportAction);
-        QAction *importAction = new QAction("Import Palette");
+        QAction *importAction = new QAction(QIcon(":/icons/import"), "Import Palette");
         trayMenu->addAction(importAction);
         trayMenu->addSeparator();
         bool chat = QString(URL_CHAT) != "";
@@ -95,7 +95,7 @@ bool DuColorDialog::addTrayIcon()
         bool doc = QString(URL_DOC) != "";
         if (doc)
         {
-            QAction *docAction = new QAction("Help");
+            QAction *docAction = new QAction(QIcon(":/icons/doc"), "Help");
             docAction->setToolTip("Read the documentation");
             docAction->setShortcut(QKeySequence("F1"));
             trayMenu->addAction(docAction);
@@ -104,7 +104,7 @@ bool DuColorDialog::addTrayIcon()
         }
         if (bugReport)
         {
-            QAction *bugReportAction = new QAction("Bug Report");
+            QAction *bugReportAction = new QAction(QIcon(":/icons/bug-report"), "Bug Report");
             bugReportAction->setToolTip("Report a bug");
             trayMenu->addAction(bugReportAction);
             if (!chat && !forum) trayMenu->addSeparator();
@@ -112,7 +112,7 @@ bool DuColorDialog::addTrayIcon()
         }
         if (chat)
         {
-            QAction *chatAction = new QAction("Chat");
+            QAction *chatAction = new QAction(QIcon(":/icons/chat"), "Chat");
             chatAction->setToolTip("Come and have a chat");
             trayMenu->addAction(chatAction);
             if (!forum) trayMenu->addSeparator();
@@ -120,7 +120,7 @@ bool DuColorDialog::addTrayIcon()
         }
         if (forum)
         {
-            QAction *forumAction = new QAction("Forum");
+            QAction *forumAction = new QAction(QIcon(":/icons/forum"), "Forum");
             forumAction->setToolTip("Join us on our forum");
             trayMenu->addAction(forumAction);
             trayMenu->addSeparator();

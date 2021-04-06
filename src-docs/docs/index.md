@@ -16,23 +16,46 @@ The best way to use it is to add it to your startup applications.
 
 [TOC]
 
-## Basic use
+## ![](img/show_sd.svg){style="width:28px"} Basic use
 
 Just click on the eyedropper icon in your system tray, or select "show" from the menu. Choose your color, click `ok` to copy it.
 
 ![](img/menu.png)
 
-## Custom palette
+## ![](img/color-palette_sd.svg){style="width:28px"} Custom palette
 
 The swatches on the lower left part are your custom palette. Select a swatch, change the color, and click `Add to custom colors` to keep this color in the selected swatch. Click `ok` to validate and save your palette.
 
-## Import / Export palette
+## ![](img/import-color-palette_sd.svg){style="width:28px"} Import / ![](img/export-color-palette_sd.svg){style="width:28px"} Export palette
 
 You can export the current palette by choosing `Export Palette` in the menu. It is saved as a `.gpl` file, which is the format used by *The Gimp* and *Inkscape* too.
 
 Palettes can also be imported by choosing `Import Palette` in the menu. For now, only `.gpl` files are supported.
 
 *Gimp Palettes* (`.gpl`) files are very simple text files you can edit by yourself if you need. Each line after the `#` character represent a swatch in the palette.They store red, green, blue values (as 8 bits integers) and a custom name.
+
+This is a *Gimp Palette* example:
+
+```
+GIMP Palette
+Name: RxUI Tints
+#
+  0 162 163	Dark Cyan
+ 16 104 142	Dark Blue
+ 62 139  69	Dark Green
+129   9 173	Dark Purple
+132  44  83	Dark Pink
+132 179  48	Dark Citrus
+172  16  16	Dark Red
+  0 162 163	Light Cyan
+131 211 246	Light Blue
+138 216 145	Light Green
+213 136 241	Light Purple
+216 255 140	Light Citrus
+236 215  24	Yellow
+241 136 186	Light Pink
+249 105 105	Light Red
+```
 
 ## License
 
@@ -66,4 +89,4 @@ A copy of the license is included in the section entitled "[Documentation Licens
 
 ![GNU](img/licenses/gnu.png){: style="height:75px;"} ![GFDL](img/licenses/gfdl-logo.png){: style="height:50px;"}
 
-![META](authors:Nicolas "Duduf" Dufresne;medias:Creative Commons contributors, GNU contributors;license:CC-BY-NC-SA;copyright:2021;updated:2021/03/07)
+![META](authors:Nicolas "Duduf" Dufresne;medias:Creative Commons contributors, GNU contributors;license:GNU-FDL;copyright:2021;updated:2021/04/06)

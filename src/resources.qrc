@@ -2,6 +2,15 @@
     <qresource prefix="/icons">
         <file alias="tray">resources/eye-dropper_sl.svg</file>
         <file alias="app">resources/ducopi-icon-medium.svg</file>
+        <file alias="bug-report">resources/bug-report.svg</file>
+        <file alias="chat">resources/chat.svg</file>
+        <file alias="doc">resources/documentation.svg</file>
+        <file alias="forum">resources/forum.svg</file>
+        <file alias="quit">resources/quit_sd.svg</file>
+        <file alias="show">resources/show_sd.svg</file>
+        <file alias="copy">resources/create-colors_sd.svg</file>
+        <file alias="export">resources/export-color-palette_sd.svg</file>
+        <file alias="import">resources/import-color-palette_sd.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="default">resources/style.css</file>
