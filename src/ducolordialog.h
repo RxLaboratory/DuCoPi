@@ -35,6 +35,7 @@ private slots:
     void duqf_forum();
     void duqf_chat();
 private:
+    QSystemTrayIcon *trayIcon;
     QAction *actionShow;
     QAction *actionQuit;
     QClipboard *clipboard;

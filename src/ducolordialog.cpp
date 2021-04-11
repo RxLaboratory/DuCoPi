@@ -63,14 +63,18 @@ void DuColorDialog::cancel()
 
 bool DuColorDialog::addTrayIcon()
 {
-    if (trayOk) return true;
+    if (trayOk)
+    {
+        trayIcon->setVisible(true);
+        return true;
+    }
 
     trayOk = true;
     //tray icon
     actionShow = new QAction(QIcon(":/icons/show"), "Show");
     actionQuit = new QAction(QIcon(":/icons/quit"), "Quit");
     QMenu *trayMenu = new QMenu("DuCoPi",this);
-    QSystemTrayIcon *trayIcon = new QSystemTrayIcon( QIcon(":/icons/tray"), this );
+    trayIcon = new QSystemTrayIcon( QIcon(":/icons/tray"), this );
     trayMenu->addAction(actionShow);
     QAction *copyAction = new QAction(QIcon(":/icons/copy"), "Copy");
     trayMenu->addAction(copyAction);
