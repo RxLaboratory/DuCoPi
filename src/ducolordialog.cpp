@@ -7,8 +7,6 @@ DuColorDialog::DuColorDialog(QWidget *parent): QColorDialog(parent)
     this->setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint | Qt::SubWindow);
     this->setWindowIcon(QIcon(":/icons/app"));
 
-    addTrayIcon();
-
     //Restore custom colors
     QSettings settings;
     int size = settings.beginReadArray("customColors");
@@ -132,6 +130,7 @@ bool DuColorDialog::addTrayIcon()
     connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(importAction, &QAction::triggered, this, &DuColorDialog::importPalette);
     connect(exportAction, &QAction::triggered, this, &DuColorDialog::exportPalette);
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &DuColorDialog::showHide);
     this->hide();
     return true;
 }
