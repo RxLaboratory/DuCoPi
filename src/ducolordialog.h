@@ -23,6 +23,7 @@ class DuColorDialog : public QColorDialog
 public:
     DuColorDialog(QWidget *parent = nullptr);
 private slots:
+    void trayActivated(QSystemTrayIcon::ActivationReason reason);
     void showHide();
     void selectColor();
     void copyColor();

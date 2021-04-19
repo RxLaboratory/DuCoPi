@@ -26,6 +26,11 @@ DuColorDialog::DuColorDialog(QWidget *parent): QColorDialog(parent)
     loadCSS(":/styles/default");
 }
 
+void DuColorDialog::trayActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason != QSystemTrayIcon::Context) showHide();
+}
+
 void DuColorDialog::showHide()
 {
     if (this->isVisible())
@@ -130,7 +135,7 @@ bool DuColorDialog::addTrayIcon()
     connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(importAction, &QAction::triggered, this, &DuColorDialog::importPalette);
     connect(exportAction, &QAction::triggered, this, &DuColorDialog::exportPalette);
-    connect(trayIcon, &QSystemTrayIcon::activated, this, &DuColorDialog::showHide);
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &DuColorDialog::trayActivated);
     this->hide();
     return true;
 }
