@@ -45,7 +45,7 @@ win* {
             "-Wdeprecated" # Ignore annoying errors on older versions of Qt
     }
 } else:macx {
-    # Just in case...
+    ICON = resources/icons/appIcon.icns
 }
 
 RESOURCES += \

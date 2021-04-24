@@ -135,7 +135,9 @@ bool DuColorDialog::addTrayIcon()
     connect(actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(importAction, &QAction::triggered, this, &DuColorDialog::importPalette);
     connect(exportAction, &QAction::triggered, this, &DuColorDialog::exportPalette);
+#ifdef Q_OS_WIN
     connect(trayIcon, &QSystemTrayIcon::activated, this, &DuColorDialog::trayActivated);
+#endif
     this->hide();
     return true;
 }
@@ -259,3 +261,4 @@ void DuColorDialog::saveCustomColors()
     }
     settings.endArray();
 }
+
