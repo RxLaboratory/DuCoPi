@@ -29,6 +29,7 @@ site_dir: ../docs/
 dev_addr: '127.0.0.1:8001'
 nav:
     - DuCoPi: index.md
+    - Installation: install.md
     - Changelog: changelog.md
     - Credits: credits.md
     - License:

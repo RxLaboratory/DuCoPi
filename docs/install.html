@@ -8,12 +8,19 @@
   
   <meta name="author" content="Nicolas Dufresne and contributors">
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>DuCoPi Documentation</title>
+  <title>Installation - DuCoPi Documentation</title>
   <link rel="stylesheet" href="css/theme.css" type="text/css" />
   <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="style.css" rel="stylesheet">
   <link href="video.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "install.md";
+    var mkdocs_page_url = "/install.html";
+  </script>
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
   <script src="js/modernizr-2.8.3.min.js" defer></script>
@@ -31,7 +38,7 @@
       <div class="wy-side-nav-search">
         <a href="index.html" class="icon icon-home"> DuCoPi Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="/search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -46,9 +53,25 @@
     <a class="" href="index.html">DuCoPi</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="install.html">Installation</a>
+    <a class="current" href="install.html">Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#how-to-install-ducopi">How to install DuCoPi</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#linux">Linux</a></li>
+        
+            <li><a class="toctree-l3" href="#windows">Windows</a></li>
+        
+            <li><a class="toctree-l3" href="#macos">MacOS</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -96,8 +119,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
+      
     
+    <li>Installation</li>
     <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/Rainbox-dev/DuCoPi/edit/master/src-docs/docs/install.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -106,15 +134,39 @@
           <div role="main">
             <div class="section">
               
-
-  <h1 id="404-page-not-found">404</h1>
-
-  <p><strong>Page not found</strong></p>
-
-
+                <h1 id="how-to-install-ducopi">How to install DuCoPi<a class="headerlink" href="#how-to-install-ducopi" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#how-to-install-ducopi">How to install DuCoPi</a><ul>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#macos">MacOS</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h2>
+<p>On <em>Debian</em>-like distributions, including <em>Ubuntu</em>, the easy way is to download and install the <em>.deb</em> package.<br />
+If you want <em>DuCoPi</em> to start with your system, add the <code>ducopi</code> command to the startup programs.</p>
+<p>On other distributions, you can download the <em>appImage</em> file and make it executable.<br />
+If you want <em>DuCoPi</em> to start with your system, add the <code>DuCoPi.AppImage</code> file to the startup programs.</p>
+<h2 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
+<p>Just unzip all the files from the <em>zip</em> archive you&rsquo;ve downloaded, and run <code>DuCoPi.exe</code>. You can create a shortcut to this executable file; if it&rsquo;s in the startup subfolder of the start menu folder, <em>DuCoPi</em> will automatically start with the Windows session.</p>
+<h2 id="macos">MacOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h2>
+<p>You can copy the <code>DuCoPi.app</code> from the <em>dmg</em> file to your Applications. <strong>To pick screen colors</strong>, you will have to <strong>allow DuCoPi to record the screen</strong> in your system security settings. To make it start with the session, either add it to your <em>dock</em> and check the option, or add it in the startup applications for your user in the <em>users &amp; groups</em> system settings.</p>
+              
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="DuCoPi"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -142,10 +194,14 @@
           <a href="https://github.com/Rainbox-dev/DuCoPi/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="changelog.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '';</script>
+    <script>var base_url = '.';</script>
     <script src="js/theme.js" defer></script>
       <script src="video.js" defer></script>
       <script src="meta.js" defer></script>
